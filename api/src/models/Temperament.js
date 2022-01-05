@@ -9,15 +9,14 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isAlpha: { ignore: "/s" },
           notNull: { msg: "Cannot be null" },
           notEmpty: true,
-          notBlank: true,
         },
       },
     },
