@@ -1,6 +1,12 @@
 const { Breed, Temperament } = require("../../db");
 const uuid = require("uuid");
-const { fetchBreedsApi, fetchBreedsDB, formatApiDetail, formatDBDetail } = require("./utils");
+const {
+  fetchBreedsApi,
+  fetchBreedsDB,
+  formatApiDetail,
+  formatDBDetail,
+} = require("./utils");
+const _ = require("lodash");
 
 const getBreeds = async function (req, res, next) {
   const { name } = req.query;
@@ -11,7 +17,6 @@ const getBreeds = async function (req, res, next) {
     next(error);
   }
 };
-
 
 const fetchBreeds = async function (name) {
   try {
@@ -30,13 +35,22 @@ const fetchBreeds = async function (name) {
   }
 };
 const formatApi = function (breeds) {
-  let formated = breeds.map(formatApiDetail);
+  //let formated = breeds.map(formatApiDetail);
+  let formated = breeds.map((breed) =>
+    formatApiDetail(
+      _.pick(breed, ["id", "name", "weight", "temperament", "image"])
+    )
+  );
+
   return formated;
 };
 
-  
 const formatDB = function (breeds) {
-  let formatedDB = breeds.map(formatDBDetail);
+  let formatedDB = breeds.map((breed) =>
+    formatDBDetail(
+      _.pick(breed, ["id", "name", "weight", "temperaments", "image"])
+    )
+  );
   return formatedDB;
 };
 
@@ -63,7 +77,7 @@ const searchApiId = async function (id) {
     let breedRaw = await fetchBreedsApi();
     breedRaw = breedRaw.filter((breed) => breed.id == id);
 
-    return breedRaw
+    return breedRaw;
   } catch (error) {
     console.log(error);
   }
@@ -79,8 +93,9 @@ const getBreedById = async function (req, res, next) {
   } else {
     breedInfo = await searchApiId(id);
     // REGUNTAR AL FRAN COMO HACER QUE ESTO QUEDE MENOS A LO MONO
-    breedInfo = breedInfo.length ? formatApiDetail(breedInfo[0]) : "No matches found";
-
+    breedInfo = breedInfo.length
+      ? formatApiDetail(breedInfo[0])
+      : "No matches found";
   }
   res.json(breedInfo);
 };
