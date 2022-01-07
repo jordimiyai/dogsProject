@@ -24,7 +24,6 @@ module.exports = (sequelize) => {
           isAlpha: { ignore: "/s" },
           notNull: { msg: "Cannot be null" },
           notEmpty: true,
-          notBlank: true,
         },
       },
       height: {
@@ -44,7 +43,7 @@ module.exports = (sequelize) => {
       life_span: {
         type: DataTypes.STRING,
         validate: {
-          isAlphanumeric: { ignore: "/s" },
+          is: /^([a-zA-Z0-9 ]+)$/
         },
       },
       img: {

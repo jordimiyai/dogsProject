@@ -1,31 +1,17 @@
 const { Breed, Temperament } = require("../../db");
-const axios = require("axios");
-const { API_KEY } = process.env;
-const { Op } = require("sequelize");
+const uuid = require("uuid");
+const { fetchBreedsApi, fetchBreedsDB, formatApiDetail, formatDBDetail } = require("./utils");
 
 const getBreeds = async function (req, res, next) {
   const { name } = req.query;
   try {
     const breeds = await fetchBreeds(name);
-    console.log("estoy en get breeds esta es mi respuesta", breeds);
     res.json(breeds);
   } catch (error) {
     next(error);
   }
 };
 
-const fetchBreedsApi = async function (name) {
-  const allBreeds = await axios.get(
-    `https://api.thedogapi.com/v1/breeds${hasQueryApi(name)}api_key=${API_KEY}`
-  );
-  return allBreeds.data;
-};
-
-const fetchBreedsDB = async function (name) {
-  allBreedsDB = await Breed.findAll(hasQueryDB(name));
-
-  return allBreedsDB;
-};
 
 const fetchBreeds = async function (name) {
   try {
@@ -43,50 +29,60 @@ const fetchBreeds = async function (name) {
     console.log(e);
   }
 };
-
-function weightToJson(weightString) {
-  let [min, max] = weightString.split(" - ");
-  let weightOk = {
-    min: Number(min),
-    max: Number(max),
-  };
-
-  return weightOk;
-}
-
 const formatApi = function (breeds) {
-  let formated = breeds.map((breed) => {
-    let newFormat = {
-      id: breed.id,
-      name: breed.name,
-      weight: weightToJson(breed.weight.metric),
-      temperament: breed.temperament,
-      image: `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`,
-    };
-    return newFormat;
-  });
+  let formated = breeds.map(formatApiDetail);
   return formated;
 };
+
+  
 const formatDB = function (breeds) {
-  //ACA ESTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-  return breeds;
+  let formatedDB = breeds.map(formatDBDetail);
+  return formatedDB;
 };
 
-const hasQueryDB = function (name) {
-  return name ? { where: { name: { [Op.iLike]: "%" + name + "%" } } } : {};
-};
-
-const hasQueryApi = function (name) {
-  let completeUrl = "?";
-  if (name) {
-    completeUrl = "/search?q=" + name + "&";
+const searchIdDB = async function (id) {
+  try {
+    const breedRaw = await Breed.findOne({
+      where: { id: id },
+      include: {
+        model: Temperament,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+    });
+    return breedRaw;
+  } catch (error) {
+    console.log(error);
   }
-  return completeUrl;
 };
 
-const getBreedById = function (req, res, next) {
+const searchApiId = async function (id) {
+  try {
+    let breedRaw = await fetchBreedsApi();
+    breedRaw = breedRaw.filter((breed) => breed.id == id);
+
+    return breedRaw
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getBreedById = async function (req, res, next) {
   const { id } = req.params;
-  res.send(id);
+  let breedInfo = null;
+
+  if (uuid.validate(id)) {
+    breedInfo = await searchIdDB(id);
+    breedInfo = breedInfo ? formatDBDetail(breedInfo) : "No matches found";
+  } else {
+    breedInfo = await searchApiId(id);
+    // REGUNTAR AL FRAN COMO HACER QUE ESTO QUEDE MENOS A LO MONO
+    breedInfo = breedInfo.length ? formatApiDetail(breedInfo[0]) : "No matches found";
+
+  }
+  res.json(breedInfo);
 };
 
 const createBreed = async function (req, res, next) {

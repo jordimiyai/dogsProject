@@ -35,8 +35,10 @@ const fetchTemperaments = async function() {
 const initialLoadDB = async function(){
   try {
     let temperaments = await fetchTemperaments()
-    await temperaments.map(loadDB)
+    await Promise.all(temperaments.map(loadDB))
     console.log("DB loaded")
+    temperaments = await Temperament.findAll();
+    return temperaments
   } 
  catch (error) {
  console.log(error)   
@@ -47,8 +49,7 @@ const getTemperaments = async function (req, res, next) {
   try {
     let allTemperaments = await Temperament.findAll();
     if(!allTemperaments.length){
-      await initialLoadDB()
-      allTemperaments = await Temperament.findAll();
+      allTemperaments = await initialLoadDB()
     }  
     res.status(200).json(allTemperaments)
 
