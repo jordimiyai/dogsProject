@@ -38,7 +38,7 @@ const formatApi = function (breeds) {
   //let formated = breeds.map(formatApiDetail);
   let formated = breeds.map((breed) =>
     formatApiDetail(
-      _.pick(breed, ["id", "name", "weight", "temperament", "image"])
+      _.pick(breed, ["id", "name", "weight", "temperament", "reference_image_id"])
     )
   );
 
@@ -48,7 +48,8 @@ const formatApi = function (breeds) {
 const formatDB = function (breeds) {
   let formatedDB = breeds.map((breed) =>
     formatDBDetail(
-      _.pick(breed, ["id", "name", "weight", "temperaments", "image"])
+      
+      _.pick(breed, ["id", "name", "weight", "temperaments", "img"])
     )
   );
   return formatedDB;

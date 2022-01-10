@@ -1,0 +1,17 @@
+
+.Card{
+    background-color: #ffffff;
+    flex-wrap: wrap;
+    margin: 1rem;
+    width: 20%;
+
+    justify-content: center;
+    border-radius: 0.2rem;
+}
+
+img{
+    margin: 0.3rem;
+    width: 12rem;
+    height: 6rem;
+
+}

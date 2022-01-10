@@ -29,7 +29,15 @@ const hasQueryDB = function (name) {
           exclude: ["breed_temperament"],
         },
       }
-    : {};
+    : {include: [
+      {
+        model: Temperament,
+      },
+    ],
+    attributes: {
+      exclude: ["breed_temperament"],
+    }
+  };
 };
 
 const hasQueryApi = function (name) {
