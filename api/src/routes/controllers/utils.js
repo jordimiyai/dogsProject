@@ -48,14 +48,14 @@ const hasQueryApi = function (name) {
   return completeUrl;
 };
 
-function weightToJson(weightString) {
-  let [min, max] = weightString.split(" - ");
-  let weightOk = {
+function stringToJson(string) {
+  let [min, max] = string.split(" - ");
+  let formatOk = {
     min: Number(min),
     max: Number(max),
   };
 
-  return weightOk;
+  return formatOk;
 }
 
 function formatTemperamet(temper) {
@@ -75,13 +75,19 @@ const formatApiDetail = function (breed) {
   let detailApi = {
     id: breed.id,
     name: breed.name,
-    weight: weightToJson(breed.weight.metric),
+    weight: stringToJson(breed.weight.metric),
     temperament: formatTemperamet(breed.temperament),
     image: `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`,
     life_span: breed.life_span,
   };
+
+  if(detailApi.image === "https://cdn2.thedogapi.com/images/.jpg"){
+    detailApi.image = 'https://g.petango.com/shared/Photo-Not-Available-dog.gif';
+
+  }
   if (breed.height) {
-    detailApi.height = breed.height.metric;
+    detailApi.height = stringToJson(breed.height.metric)
+
   }
   if (breed.life_span) {
     detailApi.life_span = breed.life_span;
@@ -98,6 +104,7 @@ const formatDBDetail = function (breed) {
     temperament: formatTemperamet(breed.temperaments),
     image: breed.img,
   };
+  
   if (breed.life_span) {
     detailDB.life_span = breed.life_span;
   }

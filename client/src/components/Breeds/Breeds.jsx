@@ -11,6 +11,7 @@ export default function Breeds(props) {
       (allBreeds.map((br) => {
           return (
             <Breed
+              key={br.id}
               name={br.name}
               image={br.image}
               temperament={br.temperament}

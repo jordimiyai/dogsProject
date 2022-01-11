@@ -104,7 +104,7 @@ const getBreedById = async function (req, res, next) {
 const createBreed = async function (req, res, next) {
   try {
     const { name, height, weight, life_span, img, temperament } = req.body;
-
+    
     let newBreed = await Breed.create({
       name,
       height,
