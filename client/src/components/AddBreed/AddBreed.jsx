@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getTemperaments, postBreeds } from "../../store/actions";
+import { getTemperaments, postBreed } from "../../store/actions";
 
 export default function AddBreed() {
   const dispatch = useDispatch();
@@ -25,43 +25,54 @@ export default function AddBreed() {
 
   useEffect(() => {
     dispatch(getTemperaments());
-  }, [dispatch]);
+  }, []);
 
   function handleChange(e) {
+    e.preventDefault()
     setNewBreed({
       ...newBreed,
       [e.target.name]: e.target.value,
     });
+    console.log(newBreed)
+
   }
 
   function handleTempersChange(e) {
+    e.preventDefault()
     setNewBreed({
       ...newBreed,
       temperament: [...newBreed.temperament, e.target.value],
     });
+    console.log(newBreed)
+
   }
 
   function handleWeightChange(e) {
+    e.preventDefault()
     setNewBreed({
       ...newBreed,
       weight: {
         [e.target.name]: e.target.value,
       },
     });
+
+    console.log(newBreed)
   }
   function handleHeightChange(e) {
+    e.preventDefault()
     setNewBreed({
       ...newBreed,
       height: {
         [e.target.name]: e.target.value,
       },
     });
+    console.log(newBreed)
+
   }
 
   function handleSubmit(e) {
-    e.prevent.default();
-    console.log(newBreed);
-    dispatch(postBreeds(newBreed));
+    e.preventDefault()
+    dispatch(postBreed(newBreed));
     alert("Breed created");
     setNewBreed({
       name: "",
@@ -79,6 +90,7 @@ export default function AddBreed() {
     });
     navigate("/home");
   }
+        
 
   return (
     <div>
@@ -86,7 +98,8 @@ export default function AddBreed() {
         <button>Back to home</button>
       </Link>
       <h2>Create a new Breed</h2>
-      <form onSubmit={handleSubmit}>
+
+      <form onSubmit={e =>handleSubmit(e)}>
         <div>
           <label>Name: </label>
           <input
@@ -153,7 +166,7 @@ export default function AddBreed() {
           >
             {tempers ? (
               tempers.map((temp) => (
-                <option value={temp.id}>{temp.name}</option>
+                <option value={temp.id} key={temp.id}>{temp.name}</option>
               ))
             ) : (
               <option>Loading</option>

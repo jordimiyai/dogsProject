@@ -64,6 +64,7 @@ export default function reducer(state = initialState, action) {
       case POST_BREED:
         return {
           ...state,
+          breeds: [...state.breeds, action.payload],
         };
     default:
       return state;

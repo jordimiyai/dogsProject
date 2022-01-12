@@ -6,6 +6,7 @@ import {
   GET_BREED_BY_NAME,
   GET_TEMPERAMENTS,
   ORDER_BY,
+  POST_BREED,
   TEMPER_URL,
 } from "../constants";
 import axios from "axios";
@@ -56,13 +57,20 @@ export function getBreedByName(name){
     })
   }
 }
+export function postBreed(payload){
+  return async function(dispatch){
+    try {
+      await axios.post(BREEDS_URL, payload)
+      dispatch({
+        type: POST_BREED, 
+      })
 
-export function postBreeds(payload){
-  return  async function(dispatch){
-    const data = await axios.post(BREEDS_URL, payload)
-    return data;
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
+
 
 export function filterByOriginal(payload) {
   return {

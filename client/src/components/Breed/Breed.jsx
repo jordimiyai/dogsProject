@@ -11,7 +11,7 @@ export default function Breed(props){
             <img src={image} alt="img not found"/>
             <h6>{`Weight: Min ${weight.min} Max ${weight.max}`}</h6>
             </Link>
-            {temperament && temperament.map((temper,index) => <h6 key={index}>{temper}
+            {temperament && temperament.map((temper) => <h6 key={temper}>{temper}
             </h6>)}
         </div>
     )

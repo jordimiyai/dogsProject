@@ -125,7 +125,7 @@ export default function Home2() {
           <option value="all">By Temperaments</option>
           {allTemperaments ? (
             allTemperaments.map((temper) => {
-              return <option value={temper.name}>{temper.name}</option>;
+              return <option key={temper.id} value={temper.name}>{temper.name}</option>;
             })
           ) : (
             <option>Temperaments</option>

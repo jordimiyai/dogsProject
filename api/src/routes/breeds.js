@@ -14,12 +14,15 @@ const paramsSchema = Joi.object({
 
 const bodySchema = Joi.object({
   name: Joi.string().min(2).max(30).required(),
-  height: Joi.string().required(),
+  height: Joi.object({
+    min: Joi.number().min(1).integer(),
+    max: Joi.number().min(1).integer()
+  }).required(),
   weight: Joi.object({
     min: Joi.number().min(1).integer(),
     max: Joi.number().min(1).integer()
   }).required(),
-  life_span: Joi.string(),
+  life_span: Joi.string().regex(/^([a-zA-Z0-9- ]+)$/),
   img:Joi.string()
   .regex(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i),
   temperament: Joi.array()
@@ -33,7 +36,6 @@ router.get("/", validator.query(querySchema), getBreeds);
 
 router.get("/:id", validator.params(paramsSchema), getBreedById );
 
-//validator.body(bodySchema),
-router.post("/", createBreed);
+router.post("/", validator.body(bodySchema), createBreed);
 
 module.exports = router;
