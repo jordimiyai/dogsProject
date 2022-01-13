@@ -7,7 +7,7 @@ import {
   ORDER_BY,
   POST_BREED,
 } from "../constants";
-import uuidValidate from "./utils";
+import isOriginal from "./utils";
 
 const initialState = {
   breeds: [],
@@ -41,7 +41,7 @@ export default function reducer(state = initialState, action) {
       const filteredBreeds =
         action.payload === "all"
           ? allBreeds
-          : allBreeds.filter((dog) => uuidValidate(dog.id) === action.payload);
+          : allBreeds.filter((dog) => isOriginal(dog.id) === action.payload);
       return {
         ...state,
         breeds: filteredBreeds,
@@ -64,7 +64,6 @@ export default function reducer(state = initialState, action) {
       case POST_BREED:
         return {
           ...state,
-          breeds: [...state.breeds, action.payload],
         };
     default:
       return state;

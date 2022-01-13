@@ -16,7 +16,7 @@ export default function Detail() {
     return () => {
       setBreed(null);
     };
-  }, []);
+  }, [breed, id]);
 
   return (
     <div>

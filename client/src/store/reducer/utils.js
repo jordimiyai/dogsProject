@@ -1,5 +1,5 @@
-import { isUuid } from 'uuidv4';
+import { validate as uuidValidate } from 'uuid';
 
-export default function uuidValidate(id){
-    return isUuid(id) ? 'created' : 'original'; 
+export default function isOriginal(id){
+    return uuidValidate(id) ? 'created' : 'original'; 
 }

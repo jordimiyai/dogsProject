@@ -1,13 +1,49 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getTemperaments, postBreed } from "../../store/actions";
+import { postBreed } from "../../store/actions";
+import Tempers from "./Tempers";
+import { useSelector } from "react-redux";
+import { getTemperaments } from "../../store/actions";
+
+function validate(breed) {
+  let errors = {};
+  const regexName = /^([a-zA-Z ]+)$/i;
+  const regexImg = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/i;
+
+  if (!breed.name) {
+    errors.name = "The field 'Name' can't be empty";
+  } else if (!breed.height.min || !breed.height.max) {
+    errors.height = "The field 'Height' must be completely filled in";
+  } else if (!breed.weight.min || !breed.weight.max) {
+    errors.weight = "The field 'Weight' must be completely filled in";
+  } else if (!breed.temperament || breed.temperament.length < 2) {
+    errors.temperament = "Please, select at least two";
+  }
+  if (breed.name && !regexName.test(breed.name)) {
+    errors.name = "The name can't include especial characters or numbers";
+  }
+  if (breed.img && !regexImg.test(breed.img)) {
+    errors.img = "Please, verify the URL";
+  }
+  if (breed.weight && breed.weight.min > breed.weight.max) {
+    errors.weight = "Please, verify your input";
+  }
+  if (breed.height && breed.height.min > breed.height.max) {
+    errors.height = "Please, verify your input";
+  }
+  return errors;
+}
 
 export default function AddBreed() {
   const dispatch = useDispatch();
-  const tempers = useSelector((state) => state.temperaments);
   const navigate = useNavigate();
+  const allTempers = useSelector((state) => state.temperaments);
+  const [errors, setErrors] = useState({});
+  const [temperSelect, setTemperSelect] = useState({
+    temperaments: JSON.parse(JSON.stringify([...allTempers])),
+  });
+
   const [newBreed, setNewBreed] = useState({
     name: "",
     height: {
@@ -25,53 +61,97 @@ export default function AddBreed() {
 
   useEffect(() => {
     dispatch(getTemperaments());
-  }, []);
+  }, [dispatch]);
 
   function handleChange(e) {
-    e.preventDefault()
+    e.preventDefault();
     setNewBreed({
       ...newBreed,
       [e.target.name]: e.target.value,
     });
-    console.log(newBreed)
 
+    setErrors(
+      validate({
+        ...newBreed,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
+
+  function handleWeightChange(e) {
+    e.preventDefault();
+    setNewBreed({
+      ...newBreed,
+      weight: {
+        ...newBreed.weight,
+        [e.target.name]: parseInt(e.target.value),
+      },
+    });
+    setErrors(
+      validate({
+        ...newBreed,
+        weight: {
+          ...newBreed.weight,
+          [e.target.name]: parseInt(e.target.value),
+        },
+      })
+    );
+  }
+
+  function handleHeightChange(e) {
+    e.preventDefault();
+    setNewBreed({
+      ...newBreed,
+      height: {
+        ...newBreed.height,
+        [e.target.name]: parseInt(e.target.value),
+      },
+    });
+    setErrors(
+      validate({
+        ...newBreed,
+        height: {
+          ...newBreed.height,
+          [e.target.name]: parseInt(e.target.value),
+        },
+      })
+    );
   }
 
   function handleTempersChange(e) {
-    e.preventDefault()
+    e.preventDefault();
     setNewBreed({
       ...newBreed,
       temperament: [...newBreed.temperament, e.target.value],
     });
-    console.log(newBreed)
-
+    setTemperSelect({
+      temperaments: temperSelect.temperaments.filter(
+        (t) => t.id !== parseInt(e.target.value)
+      ),
+    });
+    setErrors(
+      validate({
+        ...newBreed,
+        temperament: [...newBreed.temperament, e.target.value],
+      })
+    );
   }
-
-  function handleWeightChange(e) {
-    e.preventDefault()
+  function handleClick(e) {
+    e.preventDefault();
     setNewBreed({
       ...newBreed,
-      weight: {
-        [e.target.name]: e.target.value,
-      },
+      temperament: newBreed.temperament.filter(t => t !== e.target.value)
     });
-
-    console.log(newBreed)
-  }
-  function handleHeightChange(e) {
-    e.preventDefault()
-    setNewBreed({
-      ...newBreed,
-      height: {
-        [e.target.name]: e.target.value,
-      },
+    const newList = allTempers.filter(e => !newBreed.temperament.includes(e.id))
+    setTemperSelect({
+      ...temperSelect,
+      temperaments: newList
     });
-    console.log(newBreed)
-
+    
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(postBreed(newBreed));
     alert("Breed created");
     setNewBreed({
@@ -88,9 +168,12 @@ export default function AddBreed() {
       img: "",
       temperament: [],
     });
+    setTemperSelect({
+      temperaments: JSON.parse(JSON.stringify([...allTempers])),
+    });
+
     navigate("/home");
   }
-        
 
   return (
     <div>
@@ -99,7 +182,7 @@ export default function AddBreed() {
       </Link>
       <h2>Create a new Breed</h2>
 
-      <form onSubmit={e =>handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label>Name: </label>
           <input
@@ -107,8 +190,8 @@ export default function AddBreed() {
             value={newBreed.name}
             name="name"
             onChange={handleChange}
-            required={true}
           />
+          {errors.name && <p className="error">{errors.name}</p>}
         </div>
         <div>
           <label>Height: </label>
@@ -118,7 +201,8 @@ export default function AddBreed() {
             value={newBreed.height.min}
             name="min"
             onChange={handleHeightChange}
-            required={true}
+            min={0}
+            step={5}
           />
           <label>Max: </label>
           <input
@@ -126,8 +210,10 @@ export default function AddBreed() {
             value={newBreed.height.max}
             name="max"
             onChange={handleHeightChange}
-            required={true}
+            min={0}
+            step={5}
           />
+          {errors.height && <p className="error">{errors.height}</p>}
         </div>
         <div>
           <label>Weight: </label>
@@ -137,7 +223,8 @@ export default function AddBreed() {
             value={newBreed.weight.min}
             name="min"
             onChange={handleWeightChange}
-            required={true}
+            min={0}
+            step={5}
           />
           <label>Max: </label>
           <input
@@ -145,36 +232,33 @@ export default function AddBreed() {
             value={newBreed.weight.max}
             name="max"
             onChange={handleWeightChange}
-            required={true}
+            min={0}
+            step={5}
           />
+          {errors.weight && <p className="error">{errors.weight}</p>}
         </div>
         <div>
           <label>Life span: </label>
-          <input
-            type="text"
-            value={newBreed.life_span}
-            name="life_span"
-            onChange={handleChange}
-          />
+          <span>
+            <input
+              type="text"
+              value={newBreed.life_span}
+              name="life_span"
+              onChange={handleChange}
+              placeholder="Example: 5 - 6 years"
+            />
+          </span>
+          {errors.life_span && <p className="error">{errors.life_span}</p>}
         </div>
         <div>
-          <label>Temperaments: </label>
-          <select
-            name="temperament"
-            value={newBreed.temperament}
-            onChange={handleTempersChange}
-          >
-            {tempers ? (
-              tempers.map((temp) => (
-                <option value={temp.id} key={temp.id}>{temp.name}</option>
-              ))
-            ) : (
-              <option>Loading</option>
-            )}
-          </select>
-          <ul>
-            <li>{newBreed.temperament.map((id) => id) + " "}</li>
-          </ul>
+          <Tempers
+            handleTempersChange={handleTempersChange}
+            temperament={newBreed.temperament}
+            allTempers={allTempers}
+            temperSelect={temperSelect}
+            handleClick={handleClick}
+          />
+          {errors.temperament && <p className="error">{errors.temperament}</p>}
         </div>
         <div>
           <label>Image: </label>
@@ -183,9 +267,11 @@ export default function AddBreed() {
             value={newBreed.img}
             name="img"
             onChange={handleChange}
+            placeholder="File extensions: .jpg .jpeg .png"
           />
+          {errors.img && <p className="error">{errors.img}</p>}
         </div>
-        <input type="submit"  />
+        <input type="submit" />
       </form>
     </div>
   );

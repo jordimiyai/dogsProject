@@ -6,7 +6,6 @@ import { getBreedByName } from "../store/actions";
 export default function SearchBar(){
     const dispatch = useDispatch();
     const [name, setName] = useState('');
-
     function onSubmit(e){
         e.preventDefault();
         dispatch(getBreedByName(name));

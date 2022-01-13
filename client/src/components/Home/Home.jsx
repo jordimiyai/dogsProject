@@ -12,12 +12,7 @@ import { Link } from "react-router-dom";
 import Breeds from "../Breeds/Breeds";
 import { useState } from "react";
 import PageNumbers from "../PageNumbers";
-import {
-  ASC,
-  DESC,
-  HEAVIEST,
-  LIGHTEST,
-} from "../../store/constants";
+import { ASC, DESC, HEAVIEST, LIGHTEST } from "../../store/constants";
 import SearchBar from "../SearchBar";
 
 export default function Home2() {
@@ -25,18 +20,26 @@ export default function Home2() {
   const allBreeds = useSelector((state) => state.breeds);
   const allTemperaments = useSelector((state) => state.temperaments);
 
-
   const order = useSelector((state) => state.order);
 
   const [breedsToDisplay, setBreedsToDisplay] = useState([]);
 
   useEffect(() => {
+    dispatch(getBreeds());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
+
+  useEffect(() => {
     setBreedsToDisplay(allBreeds);
   }, [allBreeds]);
 
-  let breedsToShow;
+   
+
   useEffect(() => {
-    breedsToShow = JSON.parse(JSON.stringify([...allBreeds]));
+   let breedsToShow = JSON.parse(JSON.stringify([...allBreeds]));
 
     if (order === ASC) {
       breedsToShow.sort((a, b) =>
@@ -47,28 +50,14 @@ export default function Home2() {
         b.name.toLowerCase() > a.name.toLowerCase() ? 1 : -1
       );
     } else if (order === LIGHTEST) {
-      breedsToShow.sort((a, b) =>
-        a.weight.min > b.weight.min ? 1 : -1
-      );
+      breedsToShow.sort((a, b) => (a.weight.min > b.weight.min ? 1 : -1));
     } else if (order === HEAVIEST) {
-      breedsToShow.sort((a, b) =>
-      a.weight.max < b.weight.max ? 1 : -1
-      );
+      breedsToShow.sort((a, b) => (a.weight.max < b.weight.max ? 1 : -1));
     } else if (!order) {
       breedsToShow = allBreeds;
     }
     setBreedsToDisplay(breedsToShow);
-  }, [order]);
-
- 
-
-  useEffect(() => {
-    dispatch(getBreeds());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, [dispatch]);
+  }, [order, allBreeds]);
 
   function handleClick(e) {
     e.preventDefault();
@@ -83,8 +72,8 @@ export default function Home2() {
     dispatch(filterByTemper(e.target.value));
   }
 
-  function handleOrderSelector(e){
-      dispatch(orderBy(e.target.value))
+  function handleOrderSelector(e) {
+    dispatch(orderBy(e.target.value));
   }
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,11 +94,11 @@ export default function Home2() {
       </Link>
 
       <button onClick={(e) => handleClick(e)}>Reset</button>
-      <SearchBar/>
+      <SearchBar />
       <div>
         <h3>order by</h3>
-        <select onChange={e => handleOrderSelector(e)}>
-        <option value=''>Order By</option>
+        <select onChange={(e) => handleOrderSelector(e)}>
+          <option value="">Order By</option>
           <option value={ASC}>A to Z</option>
           <option value={DESC}>Z to A</option>
           <option value={LIGHTEST}>Lightest first</option>
@@ -125,7 +114,11 @@ export default function Home2() {
           <option value="all">By Temperaments</option>
           {allTemperaments ? (
             allTemperaments.map((temper) => {
-              return <option key={temper.id} value={temper.name}>{temper.name}</option>;
+              return (
+                <option key={temper.id} value={temper.name}>
+                  {temper.name}
+                </option>
+              );
             })
           ) : (
             <option>Temperaments</option>
