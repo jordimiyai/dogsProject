@@ -9,6 +9,8 @@ import SearchBar from "../SearchBar";
 import Order from "./Order";
 import { ASC, DESC, HEAVIEST, LIGHTEST } from "../../store/constants";
 import FilterH from "./FilterH";
+import "./home.css";
+
 
 export default function Home2() {
   const dispatch = useDispatch();
@@ -29,6 +31,11 @@ export default function Home2() {
     setBreedsToDisplay(allBreeds);
   }, [allBreeds]);
 
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getBreeds());
+  }
+  
   useEffect(() => {
     let breedsToShow = JSON.parse(JSON.stringify([...allBreeds]));
 
@@ -50,10 +57,7 @@ export default function Home2() {
     setBreedsToDisplay(breedsToShow);
   }, [order, allBreeds]);
 
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getBreeds());
-  }
+
 
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,15 +72,17 @@ export default function Home2() {
 
   return (
     <div>
-      <div>
+      <div className="TopBar">
+
+        <Order />
+        <FilterH />
         <SearchBar
           setBreedsToDisplay={setBreedsToDisplay}
           allBreeds={allBreeds}
         />
-        <Order />
-        <FilterH />
-        <button onClick={(e) => handleClick(e)}>Reset</button>
+        <button className="Reset" onClick={(e) => handleClick(e)}>Reset All</button>
       </div>
+      
       <Breeds allBreeds={currentBreeds} />
       <PageNumbers
         breedsPerPage={breedsPerPage}

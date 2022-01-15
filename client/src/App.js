@@ -4,7 +4,7 @@ import Landing from "./components/Landing/Landing";
 import AddBreed from "./components/AddBreed/AddBreed";
 import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
-import NavBar from "./components/NavBar/NabVar";
+import NavBar from "./components/NavBar/NavBar";
 
 
 function App() {

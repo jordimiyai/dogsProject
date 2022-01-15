@@ -1,4 +1,7 @@
 import React from "react";
+import "./home.css";
+
+
 
 export default function PageNumbers(props) {
   let { breedsPerPage, allBreeds, pageNumber } = props;
@@ -10,11 +13,11 @@ export default function PageNumbers(props) {
   }
 
   return (
-    <div>
+    <div className="Numbers">
       {pageNumbers.length ? (
         <div>
           {pageNumbers.map((num) => (
-            <button key={num} onClick={() => pageNumber(num)}>
+            <button className='Num' key={num} onClick={() => pageNumber(num)}>
               {num}
             </button>
           ))}

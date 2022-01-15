@@ -35,12 +35,12 @@ export default function Tempers(props) {
         <div className="TemperContainer">
           {temperament &&
             temperament.map((id) => (
-              <span className="IndividualTemper">
+              <div className="IndividualTemper">
                 {allTempers.find((t) => t.id === parseInt(id)).name}
                 <button className="DelTemper" value={id} onClick={handleClick}>
                   x
                 </button>
-              </span>
+              </div>
             ))}
         </div>
       </div>

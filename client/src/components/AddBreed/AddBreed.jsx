@@ -5,7 +5,7 @@ import { postBreed } from "../../store/actions";
 import Tempers from "./Tempers";
 import { useSelector } from "react-redux";
 import { getTemperaments } from "../../store/actions";
-import './addBreed.css'
+import "./addBreed.css";
 
 function validate(breed) {
   let errors = {};
@@ -154,7 +154,12 @@ export default function AddBreed() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (newBreed.name && newBreed.weight.min && newBreed.weight.max && newBreed.temperament.length > 1) {
+    if (
+      newBreed.name &&
+      newBreed.weight.min &&
+      newBreed.weight.max &&
+      newBreed.temperament.length > 1
+    ) {
       dispatch(postBreed(newBreed));
       setNewBreed({
         name: "",
@@ -176,9 +181,8 @@ export default function AddBreed() {
       alert("Breed created");
       navigate("/home");
     } else {
-      alert("All Necessary fields must be filled")
+      alert("All Necessary fields must be filled");
     }
-
   }
 
   return (
@@ -217,8 +221,8 @@ export default function AddBreed() {
               min={0}
               step={5}
             />
-            {errors.height && <p className="error">{errors.height}</p>}
           </div>
+          {errors.height && <p className="error">{errors.height}</p>}
         </div>
         <div>
           <label>Weight: </label>
@@ -241,8 +245,8 @@ export default function AddBreed() {
               min={0}
               step={5}
             />
-            {errors.weight && <p className="error">{errors.weight}</p>}
           </div>
+          {errors.weight && <p className="error">{errors.weight}</p>}
         </div>
         <div>
           <label>Life span: </label>

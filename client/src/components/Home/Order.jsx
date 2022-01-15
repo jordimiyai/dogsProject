@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import { orderBy } from "../../store/actions";
 import { ASC, DESC, HEAVIEST, LIGHTEST } from "../../store/constants";
+import "./home.css";
+
 
 export default function Order() {
   const dispatch = useDispatch()
@@ -8,8 +10,7 @@ export default function Order() {
     dispatch(orderBy(e.target.value));
   }
   return (
-    <div>
-      <h3>order by</h3>
+    <div className="Order">
       <select onChange={(e) => handleOrderSelector(e)}>
         <option value="">Order By</option>
         <option value={ASC}>A to Z</option>

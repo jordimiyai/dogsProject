@@ -1,0 +1,67 @@
+.TopBar {
+  display: flex;
+  flex-direction: row;
+  background: #cdf3f3;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 3em;
+}
+
+.Filter {
+  padding: 0em 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.Order {
+  padding: 0em 2em;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.Search {
+  padding: 0em 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.Reset {
+  margin: 3px;
+  background-color: #494949;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+.Numbers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Num {
+  margin: 2px;
+  background-color: #494949;
+  color: #b8d3ee;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  width: 3em;
+}
+
+.Num:hover {
+  background: #b8d3ee;
+  color: #494949;
+
+  text-decoration: none;
+}
+
+.Reset:hover {
+  background: #eeb8b8;
+  color: #494949;
+}
