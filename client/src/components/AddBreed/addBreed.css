@@ -1,0 +1,90 @@
+.AddBreed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #b8d3ee;
+  min-width: fit-content;
+  opacity: 90%;
+  margin: 1% 30% 1% 30%;
+  padding: 1em;
+  max-width: 40em;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+input[type="number"]{
+    width: 35%;
+    padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+
+}
+.addTitle{
+    font-size: 36px;
+    margin: 0.5em;
+    padding: 0;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  margin: 3px;
+  background-color: #494949;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.MinMax{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+.TemperContainer{
+    display: flex;
+    margin: 0.5em;
+    flex-wrap: wrap;
+    padding: 0.1em;
+}
+.IndividualTemper{
+    background-color: #494948;
+    padding: 0.3em;
+    margin: 0.1em;
+    border-radius: 0.4em;
+    font-family: sans-serif;
+    color: #e1f8f8;}
+
+.DelTemper{
+    border-radius: 1em;
+    margin: 0.1px 2px;
+    color: #ffffff;
+    border: none;
+    background: #494949;
+    padding: 3px 6px 3px 6px;
+    text-decoration: none;
+}
+.DelTemper:hover {
+    background: #db3659;
+    text-decoration: none;
+  }

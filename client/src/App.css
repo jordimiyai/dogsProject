@@ -1,38 +1,36 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-image: url(./Assets/img/dog-landing.jpg);
+  background-color: #b8eeee;
+  background-repeat: no-repeat;
+  background-position: bottom ;
+  background-attachment: fixed;
+  background-size: cover;
+  max-height: 100vh;
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+button{
+  cursor:pointer
+}
+ a{
+  text-decoration: "none";
+  color: "inherit";
+ }
+
+h1{
+  font-family: 'Abril Fatface', cursive;      
+  font-size: 5rem;
+  justify-items: center;
+}
+h3{
+  padding: 0px;
+  margin: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h4{
+  padding: 0px;
+  margin: 0px;
 }
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');

@@ -1,4 +1,5 @@
 import React from "react";
+import "./addBreed.css";
 
 export default function Tempers(props) {
   const {
@@ -31,15 +32,16 @@ export default function Tempers(props) {
         )}
       </select>
       <div>
-        <div>
-          {temperament && temperament.map((id) => (
-            <span>
-              {allTempers.find((t) => t.id === parseInt(id)).name}
-              <button value={id} onClick={handleClick}>
-                x
-              </button>
-            </span>
-          ))}
+        <div className="TemperContainer">
+          {temperament &&
+            temperament.map((id) => (
+              <span className="IndividualTemper">
+                {allTempers.find((t) => t.id === parseInt(id)).name}
+                <button className="DelTemper" value={id} onClick={handleClick}>
+                  x
+                </button>
+              </span>
+            ))}
         </div>
       </div>
     </div>

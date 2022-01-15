@@ -1,25 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getBreeds,
-  filterByOriginal,
-  getTemperaments,
-  filterByTemper,
-  orderBy,
-} from "../../store/actions";
-import { Link } from "react-router-dom";
+import { getBreeds, getTemperaments } from "../../store/actions";
 import Breeds from "../Breeds/Breeds";
 import { useState } from "react";
-import PageNumbers from "../PageNumbers";
-import { ASC, DESC, HEAVIEST, LIGHTEST } from "../../store/constants";
+import PageNumbers from "./PageNumbers";
 import SearchBar from "../SearchBar";
+import Order from "./Order";
+import { ASC, DESC, HEAVIEST, LIGHTEST } from "../../store/constants";
+import FilterH from "./FilterH";
 
 export default function Home2() {
   const dispatch = useDispatch();
   const allBreeds = useSelector((state) => state.breeds);
-  const allTemperaments = useSelector((state) => state.temperaments);
-
   const order = useSelector((state) => state.order);
 
   const [breedsToDisplay, setBreedsToDisplay] = useState([]);
@@ -36,10 +29,8 @@ export default function Home2() {
     setBreedsToDisplay(allBreeds);
   }, [allBreeds]);
 
-   
-
   useEffect(() => {
-   let breedsToShow = JSON.parse(JSON.stringify([...allBreeds]));
+    let breedsToShow = JSON.parse(JSON.stringify([...allBreeds]));
 
     if (order === ASC) {
       breedsToShow.sort((a, b) =>
@@ -64,17 +55,6 @@ export default function Home2() {
     dispatch(getBreeds());
   }
 
-  function handleFilterOriginality(e) {
-    dispatch(filterByOriginal(e.target.value));
-  }
-
-  function handleFilterTemper(e) {
-    dispatch(filterByTemper(e.target.value));
-  }
-
-  function handleOrderSelector(e) {
-    dispatch(orderBy(e.target.value));
-  }
   //paginado
   const [currentPage, setCurrentPage] = useState(1);
   const breedsPerPage = 8;
@@ -88,42 +68,14 @@ export default function Home2() {
 
   return (
     <div>
-      <h1>DoggoLand</h1>
-      <Link to="/addBreed">
-        <button> Create New Breed</button>
-      </Link>
-
-      <button onClick={(e) => handleClick(e)}>Reset</button>
-      <SearchBar />
       <div>
-        <h3>order by</h3>
-        <select onChange={(e) => handleOrderSelector(e)}>
-          <option value="">Order By</option>
-          <option value={ASC}>A to Z</option>
-          <option value={DESC}>Z to A</option>
-          <option value={LIGHTEST}>Lightest first</option>
-          <option value={HEAVIEST}>Heaviest first</option>
-        </select>
-        <h3>Filter by</h3>
-        <select onChange={(e) => handleFilterOriginality(e)}>
-          <option value="all">By Originality</option>
-          <option value="original">Original Breeds</option>
-          <option value="created">Created Breeds</option>
-        </select>
-        <select onChange={(e) => handleFilterTemper(e)}>
-          <option value="all">By Temperaments</option>
-          {allTemperaments ? (
-            allTemperaments.map((temper) => {
-              return (
-                <option key={temper.id} value={temper.name}>
-                  {temper.name}
-                </option>
-              );
-            })
-          ) : (
-            <option>Temperaments</option>
-          )}
-        </select>
+        <SearchBar
+          setBreedsToDisplay={setBreedsToDisplay}
+          allBreeds={allBreeds}
+        />
+        <Order />
+        <FilterH />
+        <button onClick={(e) => handleClick(e)}>Reset</button>
       </div>
       <Breeds allBreeds={currentBreeds} />
       <PageNumbers

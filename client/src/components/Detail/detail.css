@@ -1,0 +1,67 @@
+.Details {
+  margin: 1rem;
+  background-color: #b8d3ee;
+  opacity: 0.90;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 4rem;
+  align-self: center;
+  color: #121717;
+}
+
+.Image {
+  width: 30em;
+  align-self: center;
+  opacity: 1;
+}
+
+.ConteinerD1 {
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.ConteinerD2 {
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 40%;
+}
+.BreedImg {
+  padding: 2rem;
+}
+
+.Info {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Col {
+  width: 200px;
+}
+.BreedName {
+  font-family: "Abril Fatface", cursive;
+  font-size: 3em;
+  margin: 0;
+}
+
+h4 {
+  font-family: "Abril Fatface", cursive;
+  font-size: 1.5em;
+}
+
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1em;
+  font-weight: bolder;
+  color: #374747;
+}

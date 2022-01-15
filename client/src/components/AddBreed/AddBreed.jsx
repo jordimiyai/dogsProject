@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postBreed } from "../../store/actions";
 import Tempers from "./Tempers";
 import { useSelector } from "react-redux";
 import { getTemperaments } from "../../store/actions";
+import './addBreed.css'
 
 function validate(breed) {
   let errors = {};
@@ -140,47 +141,49 @@ export default function AddBreed() {
     e.preventDefault();
     setNewBreed({
       ...newBreed,
-      temperament: newBreed.temperament.filter(t => t !== e.target.value)
+      temperament: newBreed.temperament.filter((t) => t !== e.target.value),
     });
-    const newList = allTempers.filter(e => !newBreed.temperament.includes(e.id))
+    const newList = allTempers.filter(
+      (e) => !newBreed.temperament.includes(e.id)
+    );
     setTemperSelect({
       ...temperSelect,
-      temperaments: newList
+      temperaments: newList,
     });
-    
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(postBreed(newBreed));
-    alert("Breed created");
-    setNewBreed({
-      name: "",
-      height: {
-        min: 0,
-        max: 0,
-      },
-      weight: {
-        min: 0,
-        max: 0,
-      },
-      life_span: "",
-      img: "",
-      temperament: [],
-    });
-    setTemperSelect({
-      temperaments: JSON.parse(JSON.stringify([...allTempers])),
-    });
+    if (newBreed.name && newBreed.weight.min && newBreed.weight.max && newBreed.temperament.length > 1) {
+      dispatch(postBreed(newBreed));
+      setNewBreed({
+        name: "",
+        height: {
+          min: 0,
+          max: 0,
+        },
+        weight: {
+          min: 0,
+          max: 0,
+        },
+        life_span: "",
+        img: "",
+        temperament: [],
+      });
+      setTemperSelect({
+        temperaments: JSON.parse(JSON.stringify([...allTempers])),
+      });
+      alert("Breed created");
+      navigate("/home");
+    } else {
+      alert("All Necessary fields must be filled")
+    }
 
-    navigate("/home");
   }
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Back to home</button>
-      </Link>
-      <h2>Create a new Breed</h2>
+    <div className="AddBreed">
+      <h1 className="addTitle">Create a new Breed</h1>
 
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
@@ -195,47 +198,51 @@ export default function AddBreed() {
         </div>
         <div>
           <label>Height: </label>
-          <label>Min: </label>
-          <input
-            type="number"
-            value={newBreed.height.min}
-            name="min"
-            onChange={handleHeightChange}
-            min={0}
-            step={5}
-          />
-          <label>Max: </label>
-          <input
-            type="number"
-            value={newBreed.height.max}
-            name="max"
-            onChange={handleHeightChange}
-            min={0}
-            step={5}
-          />
-          {errors.height && <p className="error">{errors.height}</p>}
+          <div className="MinMax">
+            <label>Min: </label>
+            <input
+              type="number"
+              value={newBreed.height.min}
+              name="min"
+              onChange={handleHeightChange}
+              min={0}
+              step={5}
+            />
+            <label>Max: </label>
+            <input
+              type="number"
+              value={newBreed.height.max}
+              name="max"
+              onChange={handleHeightChange}
+              min={0}
+              step={5}
+            />
+            {errors.height && <p className="error">{errors.height}</p>}
+          </div>
         </div>
         <div>
           <label>Weight: </label>
-          <label>Min: </label>
-          <input
-            type="number"
-            value={newBreed.weight.min}
-            name="min"
-            onChange={handleWeightChange}
-            min={0}
-            step={5}
-          />
-          <label>Max: </label>
-          <input
-            type="number"
-            value={newBreed.weight.max}
-            name="max"
-            onChange={handleWeightChange}
-            min={0}
-            step={5}
-          />
-          {errors.weight && <p className="error">{errors.weight}</p>}
+          <div className="MinMax">
+            <label>Min: </label>
+            <input
+              type="number"
+              value={newBreed.weight.min}
+              name="min"
+              onChange={handleWeightChange}
+              min={0}
+              step={5}
+            />
+            <label>Max: </label>
+            <input
+              type="number"
+              value={newBreed.weight.max}
+              name="max"
+              onChange={handleWeightChange}
+              min={0}
+              step={5}
+            />
+            {errors.weight && <p className="error">{errors.weight}</p>}
+          </div>
         </div>
         <div>
           <label>Life span: </label>

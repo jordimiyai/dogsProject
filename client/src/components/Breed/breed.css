@@ -1,17 +1,63 @@
-
-.Card{
-    background-color: #ffffff;
-    flex-wrap: wrap;
-    margin: 1rem;
-    width: 20%;
-
-    justify-content: center;
-    border-radius: 0.2rem;
+.ExternalCard {
+  background-color: #b8d3ee;
+  text-decoration: "none";
+  border-radius: 0.3em;
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  padding: 0.5em;
+  margin: 0.3em;
+  opacity: 90%;
+  height: 25em;
+  flex-grow: 2;
+}
+.CardTitle{
+  margin: 1em auto 0.5em;
+}
+.DogImg {
+  align-self: center;
+  border-radius: 0.2em;
+  width: 15em;
+  height: 10em;
+  padding: 1em;
+  text-decoration: "none";
 }
 
-img{
-    margin: 0.3rem;
-    width: 12rem;
-    height: 6rem;
+.Temp {
+  background-color: #494949;
+  color: #b8eed3 ;
+  text-decoration: none;
+  margin: 0.3em;
+  padding: 0.3em;
+  border-radius: 1em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+}
+
+.AllTemps {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0.3em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: #494949;
+}
+
+h3{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Abril Fatface', cursive;
+}
+
+p{
+    padding: 0;
+    margin: 0;
 }

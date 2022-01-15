@@ -1,7 +1,6 @@
-.Breeds {
-    background-color: #dfeefb;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: center;
-    }
+.Breeds{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}

@@ -16,22 +16,41 @@ export default function Detail() {
     return () => {
       setBreed(null);
     };
-  }, [breed, id]);
+  }, []);
 
   return (
-    <div>
-      {breed ? (
-        <div>
-          <h3>{breed.name}</h3>
-          <img src={breed.image} alt="img not found" />
-          <h6>{`Weight: Min ${breed.weight.min} Max ${breed.weight.max}`}</h6>
-          <h6>{`Height: Min ${breed.height.min} Max ${breed.height.max}`}</h6>
-          <h6>{breed.life_span}</h6>
-          {breed.temperament &&
-            breed.temperament.map((temper) => <h6 key={temper}>{temper}</h6>)}
+    <div >
+      {breed && (
+        <div className="Details">
+          <div className="ConteinerD2">
+            <img className="Image" src={breed.image} alt="img not found" />
+          </div>
+          <div className="ConteinerD1">
+          <h2 className="BreedName">{breed.name}</h2>
+
+            <div className="Info">
+
+              <div className="Col">
+                <h4>Weight:</h4>
+                <p>{`${breed.weight.min} ${breed.weight.max ? (' - ' + breed.weight.max) : ''} kg`}</p>
+                <h4>Height:</h4>
+                <p>{`${breed.height.min} ${breed.height.max ? (' - ' + breed.height.max) : ''} cm`}</p>
+                <h4>Life span:</h4>
+
+                <p>{breed.life_span}</p>
+              </div>
+
+              <div className="Col">
+                <h4>Temperaments:</h4>
+
+                {breed.temperament &&
+                  breed.temperament.sort((a, b) => a.toLowerCase() > b.toLowerCase() ? 1 : -1).map((temper) => (
+                    <p key={temper}>{temper}</p>
+                  ))}
+              </div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <div>Loading...</div>
       )}
     </div>
   );

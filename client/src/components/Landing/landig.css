@@ -1,0 +1,37 @@
+
+.Landing {
+  position: relative;
+  text-align: center;
+  color: #494949;
+  margin: auto;
+}
+
+.Title {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  font-family: "Abril Fatface", cursive;
+  justify-content: space-between;
+}
+.Button {
+  display: flex;
+  justify-content: center;
+}
+
+.EnterSite {
+  color: #494949 !important;
+  background: #d0eaf6;
+  padding: 20px;
+  border: 3px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+.EnterSite:hover {
+  color: #ffffff !important;
+  background: #107dac;
+  border-color: #107dac !important;
+  text-transform: uppercase;
+  transition: all 0.4s ease 0s;
+  border-radius: 5rem;
+}
