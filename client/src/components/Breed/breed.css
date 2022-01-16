@@ -34,7 +34,7 @@
   padding: 0.3em;
   border-radius: 1em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
+  
 }
 
 .AllTemps {
@@ -44,6 +44,7 @@
   padding: 0.3em;
   flex-wrap: wrap;
   justify-content: center;
+  overflow: auto;
 }
 
 a {

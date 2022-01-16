@@ -5,9 +5,9 @@ const { Breed, Temperament } = require("../../db");
 
 const fetchBreedsApi = async function (name) {
   const allBreeds = await axios.get(
-    `https://api.thedogapi.com/v1/breeds${hasQueryApi(name)}api_key=${API_KEY}`
+    `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
   );
-  return allBreeds.data;
+  return name? allBreeds.data.filter(breed => breed.name.toLowerCase().includes(name.toLowerCase())) : allBreeds.data
 };
 
 const fetchBreedsDB = async function (name) {
@@ -40,13 +40,6 @@ const hasQueryDB = function (name) {
   };
 };
 
-const hasQueryApi = function (name) {
-  let completeUrl = "?";
-  if (name) {
-    completeUrl = "/search?q=" + name + "&";
-  }
-  return completeUrl;
-};
 
 function stringToJson(string) {
   let [min, max] = string.split(" - ");
@@ -77,14 +70,10 @@ const formatApiDetail = function (breed) {
     name: breed.name,
     weight: stringToJson(breed.weight.metric),
     temperament: formatTemperamet(breed.temperament),
-    image: `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`,
+    image: breed.image.url,
     life_span: breed.life_span,
   };
 
-  if(detailApi.image === "https://cdn2.thedogapi.com/images/.jpg"){
-    detailApi.image = 'https://g.petango.com/shared/Photo-Not-Available-dog.gif';
-
-  }
   if (breed.height) {
     detailApi.height = stringToJson(breed.height.metric)
 

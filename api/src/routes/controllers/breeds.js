@@ -38,7 +38,7 @@ const formatApi = function (breeds) {
   //let formated = breeds.map(formatApiDetail);
   let formated = breeds.map((breed) =>
     formatApiDetail(
-      _.pick(breed, ["id", "name", "weight", "temperament", "reference_image_id"])
+      _.pick(breed, ["id", "name", "weight", "temperament", "image"])
     )
   );
 
