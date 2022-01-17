@@ -9,7 +9,7 @@ export default function Landing() {
             <h1>DoggoLand</h1>
           </div>
           <div className="Button">
-            <Link to="/home">
+            <Link to="/dogs">
               <button className="EnterSite">Let's woof!</button>
             </Link>
           </div>

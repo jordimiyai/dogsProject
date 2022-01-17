@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBreeds, getTemperaments } from "../../store/actions";
+import { getBreeds, getTemperaments, orderBy } from "../../store/actions";
 import Breeds from "../Breeds/Breeds";
 import { useState } from "react";
 import PageNumbers from "./PageNumbers";
@@ -33,6 +33,8 @@ export default function Home2() {
 
   function handleClick(e) {
     e.preventDefault();
+    dispatch(orderBy(''))
+    setCurrentPage(1)
     dispatch(getBreeds());
   }
   
@@ -55,6 +57,7 @@ export default function Home2() {
       breedsToShow = allBreeds;
     }
     setBreedsToDisplay(breedsToShow);
+    setCurrentPage(1)
   }, [order, allBreeds]);
 
 

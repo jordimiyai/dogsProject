@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <div className="Logo">
       {" "}
-      <Link to="/home">
+      <Link to="/dogs">
         <div className="Logo">
           <img
             className="Icon1"

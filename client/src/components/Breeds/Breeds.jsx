@@ -7,8 +7,8 @@ export default function Breeds(props) {
   return (
     <div className="Breeds">
       {
-        allBreeds ?
-      (allBreeds.map((br) => {
+        allBreeds &&
+      allBreeds.map((br) => {
           return (
             <Breed
               key={br.id}
@@ -19,11 +19,13 @@ export default function Breeds(props) {
               id={br.id}
             />
           );
-        })) :
+        })}
+        { 
+        allBreeds.length === 0 &&
         <div>
-            loading...
+            No Breeds Match
         </div>
         }
     </div>
-  );
+  )
 }

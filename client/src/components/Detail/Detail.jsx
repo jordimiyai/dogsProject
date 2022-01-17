@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { BREEDS_URL } from "../../store/constants";
+import ShowTempers from "../Breed/showTemperament";
 
 export default function Detail() {
   const [breed, setBreed] = useState(null);
@@ -32,21 +33,19 @@ export default function Detail() {
 
               <div className="Col">
                 <h4>Weight:</h4>
-                <p>{`${breed.weight.min} ${breed.weight.max ? (' - ' + breed.weight.max) : ''} kg`}</p>
+                <p>{`${ breed.weight.min ?  breed.weight.min : 'n/a'} ${breed.weight.max ? (' - ' + breed.weight.max) : ''} kg`}</p>
                 <h4>Height:</h4>
-                <p>{`${breed.height.min} ${breed.height.max ? (' - ' + breed.height.max) : ''} cm`}</p>
+                <p>{`${ breed.height.min ?  breed.height.min : 'n/a'} ${breed.height.max ? (' - ' + breed.height.max) : ''} kg`}</p>
                 <h4>Life span:</h4>
 
                 <p>{breed.life_span}</p>
               </div>
 
               <div className="Col">
+                <div className="DetailTempers">
                 <h4>Temperaments:</h4>
-
-                {breed.temperament &&
-                  breed.temperament.sort((a, b) => a.toLowerCase() > b.toLowerCase() ? 1 : -1).map((temper) => (
-                    <p key={temper}>{temper}</p>
-                  ))}
+                <ShowTempers temperament= {breed.temperament}/>
+                </div>
               </div>
             </div>
           </div>

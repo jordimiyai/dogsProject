@@ -179,7 +179,7 @@ export default function AddBreed() {
         temperaments: JSON.parse(JSON.stringify([...allTempers])),
       });
       alert("Breed created");
-      navigate("/home");
+      navigate("/dogs");
     } else {
       alert("All Necessary fields must be filled");
     }
@@ -201,7 +201,7 @@ export default function AddBreed() {
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
         <div>
-          <label>Height: </label>
+          <label>Height (cm): </label>
           <div className="MinMax">
             <label>Min: </label>
             <input
@@ -225,7 +225,7 @@ export default function AddBreed() {
           {errors.height && <p className="error">{errors.height}</p>}
         </div>
         <div>
-          <label>Weight: </label>
+          <label>Weight (kg): </label>
           <div className="MinMax">
             <label>Min: </label>
             <input

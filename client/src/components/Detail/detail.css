@@ -65,3 +65,10 @@ p {
   font-weight: bolder;
   color: #374747;
 }
+
+.DetailTempers{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: fit-content;
+}

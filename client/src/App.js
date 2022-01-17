@@ -5,19 +5,24 @@ import AddBreed from "./components/AddBreed/AddBreed";
 import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
 import NavBar from "./components/NavBar/NavBar";
-
+import NotFound from "./components/ErrorPage/NotFound";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar/>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/addBreed"  element={<AddBreed />} />
-          <Route path="/:id" element={<Detail />} />
-
+          <Route path="/" index element={<Landing />} />
+          <Route path="/dogs" element={<NavBar />}>
+          <Route index element={<Home />}/>
+            <Route path="addDog" element={<AddBreed />} />
+            <Route path=":id" element={<Detail />} />
+          </Route>
+          <Route
+            path="*"
+            element={<NotFound/>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>
