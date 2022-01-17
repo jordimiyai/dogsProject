@@ -43,15 +43,20 @@ module.exports = (sequelize) => {
       life_span: {
         type: DataTypes.STRING,
         validate: {
-          is: /^([a-zA-Z0-9 ]+)$/
+          is: /^([a-zA-Z0-9 ]+)$/,
         },
       },
       img: {
         type: DataTypes.STRING,
-        defaultValue:'https://1.bp.blogspot.com/-eUfb8uJN4Qo/UoBpycDJqAI/AAAAAAAAFx4/QTXhJTL_cI8/s1600/perro-mestizo.jpg',
-        validate:{
+        defaultValue:
+          "https://1.bp.blogspot.com/-eUfb8uJN4Qo/UoBpycDJqAI/AAAAAAAAFx4/QTXhJTL_cI8/s1600/perro-mestizo.jpg",
+        validate: {
           isUrl: true,
-        }
+        },
+      },
+      created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
     {
