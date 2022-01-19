@@ -5,12 +5,11 @@ import { getBreeds, getTemperaments, orderBy } from "../../store/actions";
 import Breeds from "../Breeds/Breeds";
 import { useState } from "react";
 import PageNumbers from "./PageNumbers";
-import SearchBar from "../SearchBar";
 import Order from "./Order";
 import { ASC, DESC, HEAVIEST, LIGHTEST } from "../../store/constants";
 import FilterH from "./FilterH";
+import SearchBar from "./SearchBar";
 import "./home.css";
-
 
 export default function Home2() {
   const dispatch = useDispatch();
@@ -34,7 +33,6 @@ export default function Home2() {
 
   function handleClick(e) {
     e.preventDefault();
-    pageNumber(1)
     dispatch( orderBy(''))
     dispatch(getBreeds());
   }
@@ -58,6 +56,7 @@ export default function Home2() {
       breedsToShow = allBreeds;
     }
     setBreedsToDisplay(breedsToShow);
+    pageNumber(1)
   }, [order, allBreeds]);
 
 

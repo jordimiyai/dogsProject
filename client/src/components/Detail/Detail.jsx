@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import { BREEDS_URL } from "../../store/constants";
 import ShowTempers from "../Breed/showTemperament";
 
-export default function Detail(props) {
+export default function Detail() {
   const [breed, setBreed] = useState(null);
   const id = useParams()
   
@@ -18,7 +18,7 @@ export default function Detail(props) {
     return () => {
       setBreed(null);
     };
-  }, []);
+  }, [id.id]);
 
   return (
     <div >

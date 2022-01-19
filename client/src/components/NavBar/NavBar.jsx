@@ -1,7 +1,6 @@
 import React from "react";
 import "./navBar.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import Logo from "./Logo";
 import { Outlet } from "react-router";
@@ -20,7 +19,7 @@ export default function NavBar() {
         </div>
 
         <div className="Side">
-          <Link to="/dogs">
+          <Link to="/dogs/5">
             <div className="Right">
               <img
                 className="Icon2"
@@ -30,7 +29,7 @@ export default function NavBar() {
               <h6>Surprise me!</h6>
             </div>
           </Link>
-          <Link to="/dogs">
+          <Link to="/dogs/about">
             <div className="Right">
               <img
                 className="Icon2"

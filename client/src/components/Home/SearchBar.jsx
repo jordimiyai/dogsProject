@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getBreedByName } from "../store/actions";
+import { getBreedByName } from "../../store/actions";
 
 export default function SearchBar(){
     const dispatch = useDispatch();

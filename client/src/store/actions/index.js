@@ -7,7 +7,6 @@ import {
   GET_TEMPERAMENTS,
   ORDER_BY,
   POST_BREED,
-  RANDOM_ID,
   TEMPER_URL,
 } from "../constants";
 import axios from "axios";
