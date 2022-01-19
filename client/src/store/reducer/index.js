@@ -6,6 +6,7 @@ import {
   GET_TEMPERAMENTS,
   ORDER_BY,
   POST_BREED,
+  RANDOM_ID,
 } from "../constants";
 import isOriginal from "./utils";
 
@@ -15,6 +16,7 @@ const initialState = {
   temperaments: [],
   order: [],
   filter: [],
+  randomId: 1,
 };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -26,7 +28,8 @@ export default function reducer(state = initialState, action) {
       };
     case GET_TEMPERAMENTS:
       const orderedTempers = action.payload.sort((a, b) => {
-        return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1})
+        return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
+      });
       return {
         ...state,
         temperaments: orderedTempers,
@@ -37,11 +40,13 @@ export default function reducer(state = initialState, action) {
         breeds: action.payload,
       };
     case FILTER_ORIGINAL:
-      const allBreeds = state.allBreeds;
+      const allBreedsFilter = state.allBreeds;
       const filteredBreeds =
         action.payload === "all"
-          ? allBreeds
-          : allBreeds.filter((dog) => isOriginal(dog.id) === action.payload);
+          ? allBreedsFilter
+          : allBreedsFilter.filter(
+              (dog) => isOriginal(dog.id) === action.payload
+            );
       return {
         ...state,
         breeds: filteredBreeds,
@@ -61,10 +66,20 @@ export default function reducer(state = initialState, action) {
         ...state,
         order: action.payload,
       };
-      case POST_BREED:
-        return {
-          ...state,
-        };
+    case POST_BREED:
+      return {
+        ...state,
+      };
+    case RANDOM_ID:
+      const allDogs = state.allBreeds;
+      const randomPosition = Math.floor(Math.random() * allDogs.length);
+      console.log(randomPosition, allDogs)
+      const newId = allDogs[randomPosition].id;
+      console.log(newId)
+      return {
+        ...state,
+        randomId: newId,
+      };
     default:
       return state;
   }

@@ -18,7 +18,7 @@ export default function Home2() {
   const order = useSelector((state) => state.order);
 
   const [breedsToDisplay, setBreedsToDisplay] = useState([]);
-
+  
   useEffect(() => {
     dispatch(getBreeds());
   }, [dispatch]);
@@ -33,8 +33,8 @@ export default function Home2() {
 
   function handleClick(e) {
     e.preventDefault();
-    dispatch(orderBy(''))
-    setCurrentPage(1)
+    pageNumber(1)
+    dispatch( orderBy(''))
     dispatch(getBreeds());
   }
   
@@ -57,7 +57,6 @@ export default function Home2() {
       breedsToShow = allBreeds;
     }
     setBreedsToDisplay(breedsToShow);
-    setCurrentPage(1)
   }, [order, allBreeds]);
 
 
@@ -85,8 +84,8 @@ export default function Home2() {
         />
         <button className="Reset" onClick={(e) => handleClick(e)}>Reset All</button>
       </div>
-      
-      <Breeds allBreeds={currentBreeds} />
+      <Breeds allBreeds={currentBreeds}/>
+
       <PageNumbers
         breedsPerPage={breedsPerPage}
         allBreeds={breedsToDisplay.length}

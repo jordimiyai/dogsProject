@@ -1,14 +1,14 @@
 import React from "react";
 import Breed from "../Breed/Breed";
+import Loading from "../Loading";
 import "./breeds.css";
 
 export default function Breeds(props) {
   const { allBreeds } = props;
   return (
     <div className="Breeds">
-      {
-        allBreeds &&
-      allBreeds.map((br) => {
+      {allBreeds.length ? (
+        allBreeds.map((br) => {
           return (
             <Breed
               key={br.id}
@@ -19,13 +19,10 @@ export default function Breeds(props) {
               id={br.id}
             />
           );
-        })}
-        { 
-        allBreeds.length === 0 &&
-        <div>
-            No Breeds Match
-        </div>
-        }
+        })
+      ) : (
+        <Loading />
+      )}
     </div>
-  )
+  );
 }

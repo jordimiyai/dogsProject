@@ -7,6 +7,7 @@ import {
   GET_TEMPERAMENTS,
   ORDER_BY,
   POST_BREED,
+  RANDOM_ID,
   TEMPER_URL,
 } from "../constants";
 import axios from "axios";
@@ -43,34 +44,33 @@ export function getTemperaments(payload) {
   };
 }
 
-export function getBreedByName(name){
-  return function(dispatch){
-    axios.get(`${BREEDS_URL}?name=${name}`)
-    .then((breeds)=> {
-      dispatch({
-        type: GET_BREED_BY_NAME,
-        payload: breeds.data
+export function getBreedByName(name) {
+  return function (dispatch) {
+    axios
+      .get(`${BREEDS_URL}?name=${name}`)
+      .then((breeds) => {
+        dispatch({
+          type: GET_BREED_BY_NAME,
+          payload: breeds.data,
+        });
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
-export function postBreed(payload){
-  return async function(dispatch){
+export function postBreed(payload) {
+  return async function (dispatch) {
     try {
-      await axios.post(BREEDS_URL, payload)
+      await axios.post(BREEDS_URL, payload);
       dispatch({
-        type: POST_BREED, 
-      })
-
+        type: POST_BREED,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
-
 
 export function filterByOriginal(payload) {
   return {
@@ -90,5 +90,12 @@ export function orderBy(payload) {
   return {
     type: ORDER_BY,
     payload,
+  };
+}
+
+export function getRandomId() {
+  return {
+    type: RANDOM_ID,
+    
   };
 }

@@ -11,9 +11,14 @@ export const POST_BREED = "POST_BREED";
 export const FILTER_ORIGINAL = "FILTER_ORIGINAL";
 export const FILTER_BY_TEMPERAMENT = "FILTER_BY_TEMPERAMENT";
 export const ORDER_BY = "ORDER_BY";
+export const RANDOM_ID = "RANDOM_ID";
+
+
 
 export const ASC = "ASC";
 export const DESC = "DESC";
 export const LIGHTEST  = "LIGHTEST";
 export const HEAVIEST = "HEAVIEST";
+
+
 

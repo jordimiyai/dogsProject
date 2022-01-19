@@ -5,12 +5,13 @@ import { useParams } from "react-router";
 import { BREEDS_URL } from "../../store/constants";
 import ShowTempers from "../Breed/showTemperament";
 
-export default function Detail() {
+export default function Detail(props) {
   const [breed, setBreed] = useState(null);
-  let { id } = useParams();
+  const id = useParams()
+  
 
   useEffect(() => {
-    axios.get(BREEDS_URL + "/" + id).then((res) => {
+    axios.get(BREEDS_URL + "/" + id.id).then((res) => {
       setBreed(res.data);
     });
     console.log(breed);

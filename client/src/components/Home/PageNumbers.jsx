@@ -21,7 +21,7 @@ export default function PageNumbers(props) {
           ))}
         </div>
       ) : (
-        <p>loading...</p>
+        <p><button className='Num'>1</button></p>
       )}
     </div>
   );

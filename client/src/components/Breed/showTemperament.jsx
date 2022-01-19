@@ -8,9 +8,9 @@ export default function ShowTempers(props) {
         temperament
           .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
           .map((temper) => (
-            <spam className="Temp" key={temper}>
+            <p className="Temp" key={temper}>
               {temper}
-            </spam>
+            </p>
           ))
       ) : (
         <p style={{ margin: "6px 2px" }}>No temperaments available</p>

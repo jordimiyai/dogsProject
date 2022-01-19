@@ -1,10 +1,28 @@
 import React from "react";
 import "./navBar.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import Logo from "./Logo";
-import { Outlet } from "react-router";
+import {  Outlet } from "react-router";
+import { useEffect } from "react";
+import { getRandomId } from "../../store/actions";
+import { useState } from "react";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+  
+  //getting random id for surprise button
+ /* const id = useSelector(state=> state.randomId)
+  const [randomNum, setRandomNum] = useState(id)
+
+  useEffect(()=>{
+    setRandomNum(id)
+    dispatch(getRandomId)
+
+  },[id])
+  
+  */
   return (
     <>
       {" "}
@@ -17,9 +35,10 @@ export default function NavBar() {
             </div>
           </Link>
         </div>
+
         <div className="Side">
           <Link to="/dogs">
-            <div className="Right">
+            <div  className="Right">
               <img
                 className="Icon2"
                 src="https://www.clipartmax.com/png/full/95-952642_randome-clipart-svg-random-icon.png"

@@ -12,7 +12,7 @@ const getBreeds = async function (req, res, next) {
   const { name } = req.query;
   try {
     const breeds = await fetchBreeds(name);
-    res.json(breeds);
+    res.json(breeds) 
   } catch (error) {
     next(error);
   }
@@ -24,10 +24,6 @@ const fetchBreeds = async function (name) {
     const breedsDB = await fetchBreedsDB(name);
 
     const wantedBreeds = [...formatApi(breedsApi), ...formatDB(breedsDB)];
-
-    if (!wantedBreeds.length) {
-      return "There aren't any breeds with that name";
-    }
 
     return wantedBreeds;
   } catch (e) {
@@ -93,7 +89,6 @@ const getBreedById = async function (req, res, next) {
     breedInfo = breedInfo ? formatDBDetail(breedInfo) : "No matches found";
   } else {
     breedInfo = await searchApiId(id);
-    // REGUNTAR AL FRAN COMO HACER QUE ESTO QUEDE MENOS A LO MONO
     breedInfo = breedInfo.length
       ? formatApiDetail(breedInfo[0])
       : "No matches found";
