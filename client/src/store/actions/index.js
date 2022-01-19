@@ -92,10 +92,3 @@ export function orderBy(payload) {
     payload,
   };
 }
-
-export function getRandomId() {
-  return {
-    type: RANDOM_ID,
-    
-  };
-}

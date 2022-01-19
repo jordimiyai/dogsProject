@@ -29,6 +29,7 @@ export default function Home2() {
 
   useEffect(() => {
     setBreedsToDisplay(allBreeds);
+    pageNumber(1)
   }, [allBreeds]);
 
   function handleClick(e) {

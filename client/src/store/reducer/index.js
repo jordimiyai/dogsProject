@@ -6,7 +6,6 @@ import {
   GET_TEMPERAMENTS,
   ORDER_BY,
   POST_BREED,
-  RANDOM_ID,
 } from "../constants";
 import isOriginal from "./utils";
 
@@ -16,7 +15,6 @@ const initialState = {
   temperaments: [],
   order: [],
   filter: [],
-  randomId: 1,
 };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -70,16 +68,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
       };
-    case RANDOM_ID:
-      const allDogs = state.allBreeds;
-      const randomPosition = Math.floor(Math.random() * allDogs.length);
-      console.log(randomPosition, allDogs)
-      const newId = allDogs[randomPosition].id;
-      console.log(newId)
-      return {
-        ...state,
-        randomId: newId,
-      };
+    
     default:
       return state;
   }
