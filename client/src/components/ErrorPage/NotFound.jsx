@@ -31,7 +31,7 @@ export default function NotFound() {
         </button>
       </Link>
 
-      <img src={nothingHere} alt="Cute Dog" style={{ maxHeight: "90%" }} />
+      <img src={nothingHere} alt="Cute Dog" style={{ maxHeight: "90vh" }} />
     </div>
   );
 }

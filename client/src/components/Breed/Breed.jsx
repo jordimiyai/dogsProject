@@ -4,7 +4,7 @@ import "./breed.css";
 import ShowTempers from "./showTemperament";
 
 export default function Breed(props) {
-  const { name, temperament, weight, image, id } = props;
+  const { name, temperament, weight, image, id, height } = props;
   return (
     <div>
       <Link to={`${id}`}>

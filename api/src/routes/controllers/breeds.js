@@ -45,7 +45,7 @@ const formatDB = function (breeds) {
   let formatedDB = breeds.map((breed) =>
     formatDBDetail(
       
-      _.pick(breed, ["id", "name", "weight", "temperaments", "img"])
+      _.pick(breed, ["id", "name", "weight", "temperaments", "img", ])
     )
   );
   return formatedDB;

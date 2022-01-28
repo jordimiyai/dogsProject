@@ -4,8 +4,23 @@ import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
 import { Outlet } from "react-router";
+//import { useSelector } from "react-redux";
+//import { useState } from "react";
 
 export default function NavBar() {
+  /*     
+      const allDogs = useSelector((state) => state.allBreeds);
+  const [newId, setNewId] = useState(13) 
+
+
+  function newIdSetter() {
+    console.log('estoy aca',allDogs)
+    const randomPosition = Math.floor(Math.random() * allDogs);
+    //const newId = allDogs[randomPosition].id;
+    console.log(allDogs, randomPosition);
+    return ;
+  }*/
+
   return (
     <>
       <div className="Nav">
@@ -19,7 +34,7 @@ export default function NavBar() {
         </div>
 
         <div className="Side">
-          <Link to="/dogs/5">
+          <Link to={`/surprise`} replace>
             <div className="Right">
               <img
                 className="Icon2"
