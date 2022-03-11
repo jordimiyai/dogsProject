@@ -2,7 +2,7 @@ import React from "react";
 import "./home.css";
 
 export default function PageNumbers(props) {
-  let { breedsPerPage, allBreeds, pageNumber } = props;
+  let { breedsPerPage, allBreeds, pageNumber, actual } = props;
   const pageNumbers = [];
 
   let totalPages = Math.ceil(allBreeds / breedsPerPage);
@@ -15,7 +15,7 @@ export default function PageNumbers(props) {
       {pageNumbers.length ? (
         <div>
           {pageNumbers.map((num) => (
-            <button className='Num' key={num} onClick={() => pageNumber(num)}>
+            <button className={ num === actual? 'selectedPage': 'Num'} key={num} onClick={() => pageNumber(num)}>
               {num}
             </button>
           ))}

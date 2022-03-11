@@ -7,6 +7,7 @@ import Detail from "./components/Detail/Detail";
 import NavBar from "./components/NavBar/NavBar";
 import NotFound from "./components/ErrorPage/NotFound";
 import About from "./components/About";
+import Surprise from "./components/surpriseMe/surprise";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="addDog" element={<AddBreed />} />
             <Route path=":id" element={<Detail />} />
+            <Route path="surprise" element={<Surprise />} />
             <Route path="about" element={<About />} />
           </Route>
           <Route path="*" element={<NotFound />} />

@@ -1,38 +1,50 @@
-
 .Landing {
   display: flex;
-  flex-direction: column;
-  margin: 20px;
+  flex-direction: row;
   color: #494949;
   text-align: center;
-  align-items: center;
-  margin-right: 60vh;
-  margin-top: 20vh;
+  justify-content: center;
+  align-items: flex-start;
+  border: #494949;
 }
 
 .Title {
   font-family: "Abril Fatface", cursive;
-  justify-content: space-between;
-}
-.Button {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  align-self:center;
+  align-content: center;
+  width: 530px;
+
 }
 
+.dogPic {
+  display: flex;
+  align-items: stretch;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute bottom 0;
+  margin: 0;
+}
 .EnterSite {
-  color: #494949 !important;
-  background: #d0eaf6;
-  padding: 20px;
-  border: 3px solid #494949 !important;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Arial;
+  color: #d5f9fa;
+  font-size: 36px;
+  background: #494949;
+  padding: 11px 20px 10px 20px;
+  text-decoration: none;
 }
 
 .EnterSite:hover {
-  color: #ffffff !important;
-  background: #107dac;
-  border-color: #107dac !important;
+  color: #494949 !important;
+  background: #9ac6f3;
+  border-color: #b8d3ee !important;
   text-transform: uppercase;
-  transition: all 0.4s ease 0s;
-  border-radius: 5rem;
+  transition: all 0.2s ease 0s;
+  border-radius: 1rem;
 }
