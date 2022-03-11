@@ -6,7 +6,8 @@ import Tempers from "./Tempers";
 import { useSelector } from "react-redux";
 import { getTemperaments } from "../../store/actions";
 import "./addBreed.css";
-
+import axios from "axios";
+import { PIC_KEY } from "../../store/constants";
 function validate(breed) {
   let errors = {};
   const regexName = /^([a-zA-Z ]+)$/i;
@@ -185,6 +186,40 @@ export default function AddBreed() {
     }
   }
 
+  function fileChange() {
+    let photos = document.getElementById("input_img");
+    Array.from(photos.files).map(async (photo) => {
+      const body = new FormData();
+      body.set("key", PIC_KEY);
+      body.append("image", photo);
+
+      const options = {
+        onUploadProgress: (ProgressEvent) => {
+          const { loaded, total } = ProgressEvent;
+          let percent = Math.floor((loaded * 100) / total);
+          if (percent < 100) {
+            setNewBreed({
+              ...newBreed,
+              img: `loading ${percent} %`,
+            });
+          }
+        },
+      };
+
+      await axios
+        .post("https://api.imgbb.com/1/upload", body, options)
+        .then((response) => {
+          setNewBreed({
+            ...newBreed,
+            img: response.data.data.url,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  }
+
   return (
     <div className="AddBreed">
       <h1 className="addTitle">Create a new Breed</h1>
@@ -278,8 +313,18 @@ export default function AddBreed() {
             value={newBreed.img}
             name="img"
             onChange={handleChange}
-            placeholder="File extensions: .jpg .jpeg .png"
+            placeholder="Paste an URL or choose from your files"
           />
+            <input
+              autoComplete="off"
+              placeholder=" "
+              type="file"
+              accept="image/*"
+              name="logoImage"
+              id="input_img"
+              onChange={fileChange}
+            />
+           
           {errors.img && <p className="error">{errors.img}</p>}
         </div>
         <input type="submit" />

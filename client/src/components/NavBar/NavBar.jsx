@@ -8,18 +8,7 @@ import { Outlet } from "react-router";
 //import { useState } from "react";
 
 export default function NavBar() {
-  /*     
-      const allDogs = useSelector((state) => state.allBreeds);
-  const [newId, setNewId] = useState(13) 
 
-
-  function newIdSetter() {
-    console.log('estoy aca',allDogs)
-    const randomPosition = Math.floor(Math.random() * allDogs);
-    //const newId = allDogs[randomPosition].id;
-    console.log(allDogs, randomPosition);
-    return ;
-  }*/
 
   return (
     <>
@@ -34,7 +23,7 @@ export default function NavBar() {
         </div>
 
         <div className="Side">
-          <Link to={`/surprise`} replace>
+          <Link to={`/dogs/surprise`}>
             <div className="Right">
               <img
                 className="Icon2"

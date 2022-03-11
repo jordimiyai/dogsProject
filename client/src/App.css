@@ -1,7 +1,6 @@
 body{
   display: flex;
   flex-direction: column;
-  background-image: url(./Assets/img/dog-landing.jpg);
   background-color: #b8eeee;
   background-repeat: no-repeat;
   background-position: bottom ;
@@ -9,6 +8,7 @@ body{
   background-size: cover;
   max-height: 100vh;
   margin: 0;
+  /* justify-content: center; */
 }
 
 button{

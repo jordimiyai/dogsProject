@@ -90,6 +90,7 @@ export default function Home2() {
         breedsPerPage={breedsPerPage}
         allBreeds={breedsToDisplay.length}
         pageNumber={pageNumber}
+        actual={currentPage}
       />
     </div>
   );
