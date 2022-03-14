@@ -18,13 +18,13 @@ export default function About() {
       </p>
       </div>
       <div style={{display: "flex", flexDirection:"row", alignContent:"center", alignItems:"center", width:"45rem", justifyContent: "space-around"}}>
-        <a href="https://github.com/jordimiyai" target="_blank">
+        <a href="https://github.com/jordimiyai" target="_blank" rel="noreferrer">
           <img src={git} alt="GitHub" style={{width: "93px"}}/>
         </a>
-        <a href="https://www.linkedin.com/in/jordimiyai/" target="_blank">
+        <a href="https://www.linkedin.com/in/jordimiyai/" target="_blank" rel="noreferrer">
           <img src={linkedIn} alt="LinkedIn" style={{width: "93px"}}/>
         </a>
-        <a href="mailto:jgalvan89@gmail.com?subject=Vi%20tu%20web%20y%20me%20interesa%20tu%20perfil" target="_blank">
+        <a href="mailto:jgalvan89@gmail.com?subject=Vi%20tu%20web%20y%20me%20interesa%20tu%20perfil" target="_blank"rel="noreferrer">
           <img src={mail} alt="mail" style={{width: "93px"}}/>
         </a>
       </div>

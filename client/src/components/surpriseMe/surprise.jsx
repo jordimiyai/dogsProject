@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 export default function Surprise() {
   const [breed, setBreed] = useState(null);
-  const [showTimer, setShowTimer] = useState(false);
   const allDogs = useSelector((state) => state.allBreeds);
   const randomPosition = function () {
     let max = allDogs.length ? allDogs.length : 100;

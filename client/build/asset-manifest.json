@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f46e3ac9.chunk.css",
+    "main.js": "/static/js/main.4d08ad47.chunk.js",
+    "main.js.map": "/static/js/main.4d08ad47.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.aeb20495.js",
+    "runtime-main.js.map": "/static/js/runtime-main.aeb20495.js.map",
+    "static/js/2.aa8e2f54.chunk.js": "/static/js/2.aa8e2f54.chunk.js",
+    "static/js/2.aa8e2f54.chunk.js.map": "/static/js/2.aa8e2f54.chunk.js.map",
+    "static/js/3.b06697c5.chunk.js": "/static/js/3.b06697c5.chunk.js",
+    "static/js/3.b06697c5.chunk.js.map": "/static/js/3.b06697c5.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.f46e3ac9.chunk.css.map": "/static/css/main.f46e3ac9.chunk.css.map",
+    "static/js/2.aa8e2f54.chunk.js.LICENSE.txt": "/static/js/2.aa8e2f54.chunk.js.LICENSE.txt",
+    "static/media/LN.d42653e1.png": "/static/media/LN.d42653e1.png",
+    "static/media/dog-landing.91dba26a.jpg": "/static/media/dog-landing.91dba26a.jpg",
+    "static/media/eimiCV.917ea902.jpeg": "/static/media/eimiCV.917ea902.jpeg",
+    "static/media/load.2c781303.gif": "/static/media/load.2c781303.gif",
+    "static/media/nothingHere.2f81b08f.png": "/static/media/nothingHere.2f81b08f.png",
+    "static/media/pngegg.b7aaa1b4.png": "/static/media/pngegg.b7aaa1b4.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aeb20495.js",
+    "static/js/2.aa8e2f54.chunk.js",
+    "static/css/main.f46e3ac9.chunk.css",
+    "static/js/main.4d08ad47.chunk.js"
+  ]
+}
