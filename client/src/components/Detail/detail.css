@@ -3,32 +3,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3em;
-  padding: 1em;
-  border-radius: 1em;
+  margin: 1vw;
+  padding: 1vw;
+  border-radius: 1vw;
   max-width: 70%;
+  overflow: hidden;
+
 }
 
 .Image {
   opacity: 1;
-  width: 40rem;
-  height: 32rem;
+  width: 40vw;
+  height: 40vh;
   background: transparent no-repeat center;
   background-size: cover;
+  overflow: hidden;
 }
 
 
 .rightSide {
-  width: 40rem;
-  padding: 1em;
+  width: 40vw;
+  height: 40vh;  padding: 1em;
   margin: 2em;
-  overflow-wrap: normal;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items:center;
   text-align: center;
-  align-content:center
+  align-content:center;
+  overflow: hidden;
 
 }
 
@@ -50,8 +53,10 @@
 }
 .BreedName {
   font-family: "Abril Fatface", cursive;
-  font-size: 4em;
+  font-size: 2em;
   margin: 0;
+  color:#494949 ;
+
 }
 .Col{
   margin: 1rem;
@@ -59,12 +64,15 @@
 h4 {
   font-family: "Abril Fatface", cursive;
   font-size: 1.5em;
+  color:#494949 ;
+
 }
 
 p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1em;
-  font-weight: bolder;
+  font-size: 0.8em;
   color: #374747;
+  font-weight: bold;
+
 }
 

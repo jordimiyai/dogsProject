@@ -72,8 +72,9 @@ export default function Surprise() {
                   </div>
 
                   <div className="Col">
+                  <h4>Temperaments:</h4>
+
                     <div className="DetailTempers">
-                      <h4>Temperaments:</h4>
 
                       <ShowTempers
                         className="showTemps"

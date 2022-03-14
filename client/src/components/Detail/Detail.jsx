@@ -36,15 +36,16 @@ export default function Detail() {
                 <h4>Height:</h4>
                 <p>{`${breed.height.min ? breed.height.min : "n/a"} ${
                   breed.height.max ? " - " + breed.height.max : ""
-                } kg`}</p>
+                } cm`}</p>
                 <h4>Life span:</h4>
 
                 <p>{breed.life_span}</p>
               </div>
 
               <div className="Col">
+              <h4>Temperaments:</h4>
+
                 <div className="DetailTempers">
-                <h4>Temperaments:</h4>
 
                   <ShowTempers
                     className="showTemps"
