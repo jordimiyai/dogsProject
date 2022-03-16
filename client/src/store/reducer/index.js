@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action) {
         action.payload === "all"
           ? allBreedsFilter
           : allBreedsFilter.filter(
-              (dog) => isOriginal(dog.id) === action.payload
+              (dog) => isOriginal(dog) === action.payload
             );
       return {
         ...state,
